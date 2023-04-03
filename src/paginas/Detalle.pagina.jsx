@@ -1,6 +1,10 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
 import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getSingleCharacter } from "../redux/charactersSlice";
 
 /**
  * Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
@@ -15,6 +19,16 @@ import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.component
  * @returns la pagina de detalle
  */
 const PaginaDetalle = () => {
+
+    const { id } = useParams();
+    
+    const dispatch = useAppDispatch();
+    const characters = useAppSelector((state) => state);
+
+    useEffect(() => {
+        dispatch(getSingleCharacter(id));
+      }, [dispatch, id]);
+
     return <div className="container">
         <h3>Rick Sanchez</h3>
         <div className={"detalle"}>

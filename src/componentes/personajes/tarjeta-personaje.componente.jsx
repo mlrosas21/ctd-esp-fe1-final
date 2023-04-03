@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import BotonFavorito from '../botones/boton-favorito.componente';
 import './tarjeta-personaje.css';
 
@@ -9,12 +10,19 @@ import './tarjeta-personaje.css';
  * 
  * @returns un JSX element 
  */
-const TarjetaPersonaje = () => {
+const TarjetaPersonaje = ({character}) => {
+
+    const navigate = useNavigate()
+
+    const handleClick = (id) => {
+        console.log(id);
+        navigate(`/detalle/${id}`)
+    }
 
     return <div className="tarjeta-personaje">
-        <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
+        <img src={character.image} alt="Rick Sanchez" onClick={() => handleClick(character.id)}/>
         <div className="tarjeta-personaje-body">
-            <span>Rick Sanchez</span>
+            <span>{character.name}</span>
             <BotonFavorito esFavorito={false} />
         </div>
     </div>

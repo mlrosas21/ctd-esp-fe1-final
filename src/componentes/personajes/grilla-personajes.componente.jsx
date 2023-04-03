@@ -12,7 +12,7 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
 const GrillaPersonajes = ({ characters }) => {
   return (
     <div className="grilla-personajes">
-      {characters.map((e, idx) => <TarjetaPersonaje key={e.id} />)}
+      {characters && characters.map((e, idx) => <TarjetaPersonaje character={e} key={e.id} />)}
     </div>
   );
 };

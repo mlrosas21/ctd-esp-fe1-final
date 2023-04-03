@@ -1,10 +1,15 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { getCharacters } from "../api/character.queries";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getCharacters, getCharacter } from "../api/character.queries";
 import { Character } from "../types/character.types";
 
 export const getAllCharacters = createAsyncThunk(
   "characters/fetch",
   getCharacters
+);
+
+export const getSingleCharacter = createAsyncThunk(
+  "characters/fetchSingle",
+  getCharacter
 );
 
 interface CharactersState {
