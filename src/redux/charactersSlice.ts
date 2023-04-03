@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getCharacters, getCharacter } from "../api/character.queries";
+import { getCharacters, getCharacter, filterCharacters } from "../api/character.queries";
 import { Character } from "../types/character.types";
 
 export const getAllCharacters = createAsyncThunk(
@@ -12,14 +12,21 @@ export const getSingleCharacter = createAsyncThunk(
   getCharacter
 );
 
+export const searchCharacters = createAsyncThunk(
+  "characters/search",
+  filterCharacters
+)
+
 interface CharactersState {
   characters: Character[];
   loading: boolean;
+  selectedCharacter: Character | null;
 }
 
 const initialState: CharactersState = {
   characters: [],
   loading: false,
+  selectedCharacter: null
 };
 
 const personajesSlice = createSlice({
@@ -35,7 +42,14 @@ const personajesSlice = createSlice({
       .addCase(getAllCharacters.fulfilled, (state, action) => {
         state.loading = false;
         state.characters = action.payload;
-      });
+      })
+      .addCase(getSingleCharacter.pending, (state, action) => {
+        state.loading = false;
+        state.selectedCharacter = null;
+      })
+      .addCase(getSingleCharacter.fulfilled, (state, action) => {
+        state.selectedCharacter = action.payload
+      })
   },
 });
 

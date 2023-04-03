@@ -23,33 +23,33 @@ const PaginaDetalle = () => {
     const { id } = useParams();
     
     const dispatch = useAppDispatch();
-    const characters = useAppSelector((state) => state);
+    const character = useAppSelector((state) => state.characters.selectedCharacter);
 
     useEffect(() => {
         dispatch(getSingleCharacter(id));
       }, [dispatch, id]);
 
-    return <div className="container">
-        <h3>Rick Sanchez</h3>
+    return (character && 
+    <div className="container">
+        <h3>{character.name}</h3>
         <div className={"detalle"}>
             <div className={"detalle-header"}>
-                <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"/>
+                <img src={character.image} alt="Rick Sanchez"/>
                 <div className={"detalle-header-texto"}>
 
-                    <p>Rick Sanchez</p>
-                    <p>Planeta: Earth</p>
-                    <p>Genero: Male</p>
+                    <p>{character.name}</p>
+                    <p>Planeta: {character.location.name}</p>
+                    <p>Genero: {character.gender}</p>
                 </div>
                 <BotonFavorito esFavorito={false} />
             </div>
         </div>
         <h4>Lista de episodios donde apareció el personaje</h4>
         <div className={"episodios-grilla"}>
-            <TarjetaEpisodio />
-            <TarjetaEpisodio />
-            <TarjetaEpisodio />
+            {character.episode.map((episode, idx) => <TarjetaEpisodio episodio={episode} />)}
         </div>
     </div>
+    )
 }
 
 export default PaginaDetalle
