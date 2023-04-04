@@ -34,6 +34,9 @@ const personajesSlice = createSlice({
         state.favorites = state.favorites.filter(e => e.id !== action.payload.id)
       }
     },
+    clearFavorites: (state, action) => {
+      state.favorites = []
+    }
   },
   // Async calls
   extraReducers: (builder) => {
@@ -55,5 +58,5 @@ const personajesSlice = createSlice({
   },
 });
 
-export const { markAsFavorite } = personajesSlice.actions;
+export const { markAsFavorite, clearFavorites } = personajesSlice.actions;
 export default personajesSlice.reducer;
