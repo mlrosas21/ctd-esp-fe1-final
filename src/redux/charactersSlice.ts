@@ -1,6 +1,8 @@
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAll, getCharacter } from "../api/character.queries";
+import { getAll, getCharacter } from "../api/characters.queries";
 import { Character } from "../types/character.types";
+import { getEpisodes } from "../api/episodes.queries";
 
 export const getCharacters = createAsyncThunk("characters/fetch", getAll);
 
@@ -54,7 +56,7 @@ const personajesSlice = createSlice({
       })
       .addCase(getSingleCharacter.fulfilled, (state, action) => {
         state.selectedCharacter = action.payload;
-      });
+      })
   },
 });
 
