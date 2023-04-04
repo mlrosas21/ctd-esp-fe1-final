@@ -3,7 +3,7 @@ import GrillaPersonajes from "../componentes/personajes/grilla-personajes.compon
 import Paginacion from "../componentes/paginacion/paginacion.componente";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useEffect, useState } from "react";
-import { getAllCharacters } from "../redux/charactersSlice";
+import { getCharacters } from "../redux/charactersSlice";
 
 /**
  * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
@@ -15,20 +15,25 @@ import { getAllCharacters } from "../redux/charactersSlice";
  */
 const PaginaInicio = () => {
   const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState("")
   const dispatch = useAppDispatch();
   const characters = useAppSelector((state) => state.characters);
 
   useEffect(() => {
-    dispatch(getAllCharacters(page));
-  }, [dispatch, page]);
+    dispatch(getCharacters({page, filter}));
+  }, [dispatch, page, filter]);
+
+  const handleClick = () => {
+    setFilter("")
+  }
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Catálogo de Personajes</h3>
-        <button className="danger">Test Button</button>
+        <button className="danger" onClick={handleClick}>Limpiar filtro</button>
       </div>
-      <Filtros />
+      <Filtros filter={filter} setFilter={setFilter} />
       <Paginacion page={page} setPage={setPage} />
       <GrillaPersonajes characters={characters.characters.results} />
       <Paginacion page={page} setPage={setPage} />

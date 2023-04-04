@@ -11,12 +11,10 @@ import './paginacion.css';
 const Paginacion = ({page, setPage}) => {
 
     const handleNext = () => {
-        console.log(page);
         setPage(prevState => prevState+1)
     }
 
     const handlePrev = () => {
-        console.log(page);
         setPage(prevState => prevState-1)
     }
 

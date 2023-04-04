@@ -10,8 +10,6 @@ import './tarjeta-episodio.css';
  */
 const TarjetaEpisodio = ({episodio}) => {
 
-    console.log(episodio);
-
     return <div className="tarjeta-episodio">
             <h4>Close Rick-counters of the Rick Kind</h4>
             <div>
