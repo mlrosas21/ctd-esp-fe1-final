@@ -8,10 +8,10 @@ export const getAll = async({ page, filter }: { page: number; filter: string }) 
         url += `&name=${filter}`
     }
     const response = await axios.get(url)
-    return response.data
+    return response.data.results
 }
 
-export const getCharacter = async(id: number) => {
+export const getCharacter = async(id: string) => {
     const response = await axios.get(`${BASE_API_URL}/${id}`)
     return response.data
 }

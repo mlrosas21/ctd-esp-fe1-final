@@ -1,3 +1,4 @@
+import { Episode } from '../../types/episode.types';
 import { formatDate } from '../../utils/dateUtils';
 import './tarjeta-episodio.css';
 
@@ -9,7 +10,7 @@ import './tarjeta-episodio.css';
  * 
  * @returns un JSX element 
  */
-const TarjetaEpisodio = ({episodio}) => {
+const TarjetaEpisodio = ({episodio}: {episodio: Episode}) => {
     
     return <div className="tarjeta-episodio">
             <h4>{episodio.name}</h4>

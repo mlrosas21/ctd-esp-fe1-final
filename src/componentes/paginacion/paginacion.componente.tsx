@@ -8,7 +8,7 @@ import './paginacion.css';
  * 
  * @returns un JSX element 
  */
-const Paginacion = ({page, setPage}) => {
+const Paginacion = ({page, setPage}: {page: number, setPage: React.Dispatch<React.SetStateAction<number>>}) => {
 
     const handleNext = () => {
         setPage(prevState => prevState+1)

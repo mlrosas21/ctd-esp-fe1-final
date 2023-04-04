@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { markAsFavorite } from "../../redux/charactersSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import BotonFavorito from "../botones/boton-favorito.componente";
 import "./tarjeta-personaje.css";
 import { Link } from "react-router-dom";
+import { Character } from "../../types/character.types";
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes.
@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
  *
  * @returns un JSX element
  */
-const TarjetaPersonaje = ({ character }) => {
+const TarjetaPersonaje = ({ character }: {character: Character}) => {
     const favorites = useAppSelector(state => state.characters.favorites )
     const dispatch = useAppDispatch()
 

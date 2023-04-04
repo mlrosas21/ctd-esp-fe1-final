@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAll, getCharacter } from "../api/characters.queries";
 import { Character } from "../types/character.types";
-import { getEpisodes } from "../api/episodes.queries";
 
 export const getCharacters = createAsyncThunk("characters/fetch", getAll);
 
@@ -36,7 +35,7 @@ const personajesSlice = createSlice({
         state.favorites = state.favorites.filter(e => e.id !== action.payload.id)
       }
     },
-    clearFavorites: (state, action) => {
+    clearFavorites: (state) => {
       state.favorites = []
     }
   },

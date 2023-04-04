@@ -33,9 +33,9 @@ const PaginaDetalle = () => {
   };
 
   useEffect(() => {
-    if (character) {
+    if (character && character.episode) {
       const episodes = character.episode.map((e) =>
-        parseInt(e.split("/").pop())
+        parseInt(e.split("/").pop() || " ")
       );
       const episodesString = episodes.join(",");
       dispatch(getCharacterEpisodes(episodesString));
@@ -43,7 +43,7 @@ const PaginaDetalle = () => {
   }, [dispatch, character]);
 
   useEffect(() => {
-    dispatch(getSingleCharacter(id));
+    if(id) dispatch(getSingleCharacter(id));
   }, [dispatch, id]);
 
   return (

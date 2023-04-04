@@ -35,7 +35,7 @@ const PaginaInicio = () => {
       </div>
       <Filtros filter={filter} setFilter={setFilter} />
       <Paginacion page={page} setPage={setPage} />
-      <GrillaPersonajes characters={characters.characters.results} />
+      <GrillaPersonajes characters={characters.characters} />
       <Paginacion page={page} setPage={setPage} />
     </div>
   );
