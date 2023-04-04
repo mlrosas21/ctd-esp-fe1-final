@@ -19,7 +19,7 @@ const TarjetaPersonaje = ({ character }) => {
 
     const handleClick = () => {
         console.log("press");
-        dispatch(markAsFavorite(character.id))
+        dispatch(markAsFavorite(character))
     }
 
   return (
@@ -29,7 +29,7 @@ const TarjetaPersonaje = ({ character }) => {
       </Link>
       <div className="tarjeta-personaje-body">
         <span>{character.name}</span>
-        <BotonFavorito esFavorito={favorites.find(e => e === character.id) ? true : false} onClick={handleClick} />
+        <BotonFavorito esFavorito={favorites.find(e => e.id === character.id) ? true : false} onClick={handleClick} />
       </div>
     </div>
   );

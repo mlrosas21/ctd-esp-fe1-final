@@ -13,7 +13,7 @@ interface CharactersState {
   characters: Character[];
   loading: boolean;
   selectedCharacter: Character | null;
-  favorites: number[];
+  favorites: Character[];
 }
 
 const initialState: CharactersState = {
@@ -28,12 +28,10 @@ const personajesSlice = createSlice({
   initialState,
   reducers: {
     markAsFavorite: (state, action) => {
-      console.log(state.characters);
-      
-      if(!state.favorites.find(e => e === action.payload)){
+      if(!state.favorites.find(e => e.id === action.payload.id)){
         state.favorites.push(action.payload)
       } else {
-        state.favorites = state.favorites.filter(e => e !== action.payload)
+        state.favorites = state.favorites.filter(e => e.id !== action.payload.id)
       }
     },
   },
