@@ -4,7 +4,7 @@ import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.component
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getSingleCharacter } from "../redux/charactersSlice";
+import { getSingleCharacter, markAsFavorite } from "../redux/charactersSlice";
 
 /**
  * Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
@@ -21,9 +21,14 @@ import { getSingleCharacter } from "../redux/charactersSlice";
 const PaginaDetalle = () => {
 
     const { id } = useParams();
-    
     const dispatch = useAppDispatch();
+    const favorites = useAppSelector(state => state.characters.favorites )
     const character = useAppSelector((state) => state.characters.selectedCharacter);
+
+    const handleClick = () => {
+        console.log("press");
+        dispatch(markAsFavorite(character))
+    }
 
     useEffect(() => {
         dispatch(getSingleCharacter(id));
@@ -41,7 +46,7 @@ const PaginaDetalle = () => {
                     <p>Planeta: {character.location.name}</p>
                     <p>Genero: {character.gender}</p>
                 </div>
-                <BotonFavorito esFavorito={false} />
+                <BotonFavorito esFavorito={favorites.find(e => e.id === character.id) ? true : false} onClick={handleClick} />
             </div>
         </div>
         <h4>Lista de episodios donde apareció el personaje</h4>
