@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getEpisodes } from "../api/episodes.queries";
 import { Episode } from "../types/episode.types";
@@ -16,7 +15,13 @@ const initialState: EpisodesState = {
   episodes: []
 };
 
-const personajesSlice = createSlice({
+/**
+ * Slice for managing the episodes of a character.
+ *
+ * @type {import("@reduxjs/toolkit").Slice<EpisodesState>}
+ */
+
+const episodesSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {},
@@ -29,4 +34,4 @@ const personajesSlice = createSlice({
   },
 });
 
-export default personajesSlice.reducer;
+export default episodesSlice.reducer;

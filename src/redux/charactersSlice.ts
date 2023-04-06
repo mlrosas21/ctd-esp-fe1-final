@@ -24,10 +24,22 @@ const initialState: CharactersState = {
   favorites: []
 };
 
+/**
+ * Slice for handling characters-related state and actions.
+ *
+ * @type {import("@reduxjs/toolkit").Slice<CharactersState>}
+ */
 const personajesSlice = createSlice({
   name: "characters",
   initialState,
   reducers: {
+    /**
+     * Reducer function to mark a character as a favorite.
+     *
+     * @function
+     * @param {CharactersState} state - The current state of characters.
+     * @param {import("@reduxjs/toolkit").PayloadAction<Character>} action - The action object containing the character to be marked as favorite.
+     */
     markAsFavorite: (state, action) => {
       if(!state.favorites.find(e => e.id === action.payload.id)){
         state.favorites.push(action.payload)
@@ -35,6 +47,12 @@ const personajesSlice = createSlice({
         state.favorites = state.favorites.filter(e => e.id !== action.payload.id)
       }
     },
+    /**
+     * Reducer function to clear all favorite characters.
+     *
+     * @function
+     * @param {CharactersState} state - The current state of characters.
+     */
     clearFavorites: (state) => {
       state.favorites = []
     }
